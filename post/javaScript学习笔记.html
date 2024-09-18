@@ -1,0 +1,468 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>javaScript学习笔记 | Blank</title><meta name="author" content="Blank"><meta name="copyright" content="Blank"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JavaScript 是 Web 的编程语言。所有现代的 HTML 页面都使用 JavaScript。"><link rel="shortcut icon" href="/img/%E5%A4%B4%E5%83%8F.jpg"><link rel="canonical" href="http://example.com/post/javaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":50},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Blank","link":"链接: ","source":"来源: Blank","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'javaScript学习笔记',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-17 23:28:37'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">42</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">58</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/memorandum/"><i class="fa-fw fa fa-pen"></i><span> 备忘录</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-face-grin-beam-sweat"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://kisugitakumi.com/img/javascript.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Blank"><span class="site-name">Blank</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/memorandum/"><i class="fa-fw fa fa-pen"></i><span> 备忘录</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-face-grin-beam-sweat"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">javaScript学习笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-24T16:00:00.000Z" title="发表于 2020-12-25 00:00:00">2020-12-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-17T15:28:37.044Z" title="更新于 2024-09-17 23:28:37">2024-09-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="javaScript学习笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="DOM和BOM"><a href="#DOM和BOM" class="headerlink" title="DOM和BOM"></a>DOM和BOM</h1><h2 id="JS组成"><a href="#JS组成" class="headerlink" title="JS组成"></a>JS组成</h2><p>JavaScript的实现包括以下3个部分：</p>
+<table>
+<thead>
+<tr>
+<th>ECMAScript(核心)</th>
+<th>描述了JS的语法和基本对象。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文档对象模型 （DOM）</td>
+<td>处理网页内容的方法和接口</td>
+</tr>
+<tr>
+<td>浏览器对象模型（BOM）</td>
+<td>与浏览器交互的方法和接口</td>
+</tr>
+</tbody></table>
+<ol>
+<li>DOM 是 W3C 的标准；[所有浏览器公共遵守的标准]</li>
+<li>BOM 是 各个浏览器厂商根据 DOM在各自浏览器上的实现；[表现为不同浏览器定义有差别，实现方式不同]</li>
+<li>window 是 BOM 对象，而非 js 对象；javacsript是通过访问BOM（Browser Object Model）对象来访问、控制、修改客户端（浏览器）</li>
+</ol>
+<blockquote>
+<p>ECMAScript</p>
+</blockquote>
+<ol>
+<li><p>ECMAScript是一个标准，JS只是它的一个实现，其他实现包括ActionScript。</p>
+</li>
+<li><p>“ECMAScript可以为不同种类的宿主环境提供核心的脚本编程能力……”，即</p>
+<p>ECMAScript不与具体的宿主环境相绑定，如JS的宿主环境是浏览器，AS的宿主环境是Flash。</p>
+</li>
+<li><p>ECMAScript描述了以下内容：语法、类型、语句、关键字、保留字、运算符、对象。</p>
+</li>
+</ol>
+<h2 id="DOM-DOCUMENT-BOM-WINDOW的区别"><a href="#DOM-DOCUMENT-BOM-WINDOW的区别" class="headerlink" title="DOM DOCUMENT BOM WINDOW的区别"></a>DOM DOCUMENT BOM WINDOW的区别</h2><ul>
+<li>DOM 是为了操作文档出现的 API，document 是其的一个对象；</li>
+<li>BOM 是为了操作浏览器出现的 API，window 是其的一个对象。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://img2018.cnblogs.com/blog/1481609/201810/1481609-20181026113811554-1545293918.png" alt="img"></p>
+<p><strong>归DOM管的：</strong></p>
+<p>E区（就是document。由web开发人员呕心沥血写出来的一个文件夹，里面有index.html，CSS和JS的，部署在服务器上，我们可以通过浏览器的地址栏输入URL然后回车将这个document加载到本地，浏览，右键查看源代码等。）</p>
+<p><strong>归BOM管的：</strong></p>
+<ul>
+<li><p>A区（浏览器的标签页，地址栏，搜索栏，书签栏，窗口放大还原关闭按钮，菜单栏等等）</p>
+</li>
+<li><p>B区（浏览器的右键菜单）</p>
+</li>
+<li><p>C区（document加载时的状态栏，显示http状态码等）</p>
+</li>
+<li><p>D区（滚动条scroll bar）</p>
+</li>
+</ul>
+<p><font color="red" ><strong>区别：DOM描述了处理网页内容的方法和接口，BOM描述了与浏览器进行交互的方法和接口</strong></font></p>
+<h1 id="JS简介"><a href="#JS简介" class="headerlink" title="JS简介"></a>JS简介</h1><h2 id="三大组成"><a href="#三大组成" class="headerlink" title="三大组成"></a>三大组成</h2><p>我们已经知道ECMAScript是JavaScript标准，所以一般情况下这两个词我们认为是一个意思。但是实际上JavaScript的含义却要更大一些。</p>
+<p>一个完整的JavaScript实现应该由以下三个部分构成：ECMAScript，DOM，BOM。如下图所示：</p>
+<p><img src="/img/loading.gif" data-original="https://kisugitakumi.oss-cn-chengdu.aliyuncs.com/img10/image-20220213124217207.png" alt="image-20220213124217207"></p>
+<h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><ul>
+<li>解释型语言：JavaScript是一门解释型语言，所谓解释型值语言不需要被编</li>
+<li>译为机器码再执行，而是直接执行。</li>
+<li>类似于 C 和 Java 的语法结构</li>
+<li>动态语言</li>
+<li>基于原型的面向对象</li>
+</ul>
+<h1 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h1><h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><strong>基本类型</strong>：字符串（String）、数字(Number)、布尔(Boolean)、空（Null）、未定义（Undefined）、Symbol。</p>
+<p><strong>引用数据类型</strong>：对象(Object)、数组(Array)、函数(Function)，还有两个特殊的对象：正则（RegExp）和日期（Date）</p>
+<p><font color="red"><strong>注：</strong></font>Symbol 是 ES6 引入了一种新的原始数据类型，表示独一无二的值。</p>
+<p><img src="/img/loading.gif" data-original="https://www.runoob.com/wp-content/uploads/2013/08/Javascript-DataType.png" alt="img"></p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><h3 id="转换为String"><a href="#转换为String" class="headerlink" title="转换为String"></a>转换为String</h3><ol>
+<li><p>调用被转换数据的toString()方法（这个方法不适用于null和undefined）</p>
+</li>
+<li><p>调用String()函数，</p>
+</li>
+<li><p>隐式的类型转换：任意的数据类型 +””</p>
+<p>代码展示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</span><br><span class="line">a = a.<span class="title function_">toString</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</span><br><span class="line">a = <span class="title class_">String</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="literal">true</span>;</span><br><span class="line">a = a + <span class="string">&quot;&quot;</span>;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="转换为number"><a href="#转换为number" class="headerlink" title="转换为number"></a>转换为number</h3><ol>
+<li><p>调用Number()函数</p>
+</li>
+<li><p>调用parseInt()或parseFloat()。这两个函数专门用来将一个字符串转换为数字的。</p>
+</li>
+<li><p>使用一元的+来进行隐式的类型转换</p>
+<p>代码展示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> s = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">s = <span class="title class_">Number</span>(s);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">&quot;123&quot;</span>;</span><br><span class="line">a = <span class="built_in">parseInt</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">&quot;123&quot;</span>;  </span><br><span class="line">a = +a;  </span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h1><h2 id="对象操作"><a href="#对象操作" class="headerlink" title="对象操作"></a>对象操作</h2><h3 id="创建对象和添加属性"><a href="#创建对象和添加属性" class="headerlink" title="创建对象和添加属性"></a>创建对象和添加属性</h3><p><strong>方式1：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">person.<span class="property">name</span> = <span class="string">&quot;Hongyi&quot;</span>;</span><br><span class="line">person.<span class="property">age</span> = <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方式2：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> person = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Hongyi&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="访问属性"><a href="#访问属性" class="headerlink" title="访问属性"></a>访问属性</h3><ul>
+<li>对象.属性名</li>
+<li>对象[“属性名”]</li>
+<li>使用for in循环遍历对象的属性</li>
+</ul>
+<p>代码实现：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person.<span class="property">name</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person[<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Hongyi&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">    <span class="attr">gender</span>: <span class="string">&quot;male&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&quot;Hongyi&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span>,</span><br><span class="line">    <span class="attr">gender</span>: <span class="string">&quot;male&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数是由事件驱动的或者当它被调用时执行的可重复使用的代码块。</p>
+<p><strong>JavaScript中的函数也是一个对象。</strong>所以函数也有自己的属性</p>
+<h3 id="函数声明与调用"><a href="#函数声明与调用" class="headerlink" title="函数声明与调用"></a>函数声明与调用</h3><p><strong>方式一</strong>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="keyword">function</span> 函数名([形参<span class="number">1</span>,形参<span class="number">2.</span>..形参N])&#123;  </span><br><span class="line">	<span class="comment">// 语句...  </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">//例如</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sum</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//函数调用</span></span><br><span class="line"><span class="keyword">var</span> res = <span class="title function_">sum</span>(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>方式二(函数表达式)</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//函数声明</span></span><br><span class="line"><span class="keyword">var</span> 函数名 = <span class="keyword">function</span>(<span class="params">[形参<span class="number">1</span>,形参<span class="number">2.</span>..形参N]</span>)&#123;  </span><br><span class="line">	<span class="comment">// 语句...  </span></span><br><span class="line">&#125;;  </span><br><span class="line">例如：</span><br><span class="line"><span class="keyword">var</span> sum = <span class="keyword">function</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="返回值与方法"><a href="#返回值与方法" class="headerlink" title="返回值与方法"></a>返回值与方法</h3><p>return后可以跟任意类型的值，可以是基本数据类型，也可以是一个对象。</p>
+<p><strong>如果return后不跟值，或者是不写return则函数默认返回undefined。</strong></p>
+<p><strong>方法</strong>（method）：可以将一个函数设置为一个对象的属性，当一个对象的属性是一个函数时，我们称这个函数是该对象的方法。</p>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>作用域是一个变量的作用范围。</p>
+<p>在JS中作用域分成两种：</p>
+<ul>
+<li><p>全局作用域：</p>
+<ul>
+<li>直接在script标签中编写的代码都运行在全局作用域中</li>
+<li><strong>全局作用域在打开页面时创建，在页面关闭时销毁。</strong></li>
+<li>全局作用域中有一个<strong>全局对象window</strong>，window对象由浏览器提供，可以在页面中直接使用，它代表的是整个的浏览器的窗口。</li>
+<li><strong>在全局作用域中创建的变量都会作为window对象的属性保存</strong></li>
+<li>在全局作用域中创建的函数都会作为window对象的方法保存</li>
+<li>在全局作用域中创建的变量和函数可以在页面的任意位置访问。</li>
+<li>在函数作用域中也可以访问到全局作用域的变量。</li>
+<li>尽量不要在全局中创建变量</li>
+</ul>
+</li>
+<li><p>函数作用域：</p>
+<ul>
+<li>函数作用域是函数执行时创建的作用域，每次调用函数都会创建一个新的函数作用域。</li>
+<li>函数作用域在函数执行时创建，在函数执行结束时销毁。</li>
+<li>在函数作用域中创建的变量，不能在全局中访问。</li>
+<li>当在函数作用域中使用一个变量时，它会先在自身作用域中寻找，如果找到了则直接使用，如果没有找到则到上一级作用域中寻找，如果找到了则使用，找不到则继续向上找，一直会找到全局作用域的变量为止。</li>
+</ul>
+</li>
+</ul>
+<h3 id="函数的属性和方法"><a href="#函数的属性和方法" class="headerlink" title="函数的属性和方法"></a>函数的属性和方法</h3><blockquote>
+<p>属性</p>
+</blockquote>
+<p>在函数内部，有两个特殊的隐含参数；分别是arguments与this;</p>
+<ul>
+<li><p><strong>arguments</strong>：</p>
+<ul>
+<li>该对象实际上是一个数组，用于保存函数的实参。注意，即使函数不定义形参，也可以使用arguments来保存实参。</li>
+<li>同时该对象还有一个属性callee来表示当前函数。</li>
+</ul>
+<p>代码测试：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>.<span class="property">length</span>); <span class="comment">// 2</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">arguments</span>[<span class="number">0</span>]); <span class="comment">// &quot;hello&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fun</span>(<span class="string">&quot;hello&quot;</span>, <span class="literal">true</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>this</strong></p>
+<ul>
+<li>this 引用的是一个对象。对于最外层代码与函数内部的情况，其引用目标是不同的。</li>
+<li>此外，即使在函数内部，根据函数调用方式的不同，引用对象也会有所不同。需要注意的是，this 引用会根据代码的上下文语境自动改变其引用对象。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>方法</p>
+</blockquote>
+<p>函数作为对象，内部也有方法，有apply()和call()。</p>
+<p><strong>这两个方法都是函数对象的方法需要通过函数对象来调用。</strong></p>
+<p>当对函数调用这两个方法时，都会调用函数执行：。</p>
+<p>不同的是，这两个方法可以<strong>通过第一个实参来指定函数中this指向的对象：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="title function_">fun</span>(); <span class="comment">// this --&gt; window</span></span><br><span class="line">fun.<span class="title function_">call</span>(obj); <span class="comment">// this --&gt; obj</span></span><br><span class="line">fun.<span class="title function_">apply</span>(obj); <span class="comment">// this --&gt; obj</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>call方法可以将实参在对象之后依次传递</li>
+<li>apply方法需要将实参封装到一个数组中</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">fun</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(a + b);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">fun.<span class="title function_">call</span>(obj, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">fun.<span class="title function_">apply</span>(obj, [<span class="number">1</span>, <span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
+
+<h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h3><ul>
+<li>在方法中，this 表示该方法所属的对象。</li>
+<li>如果单独使用，this 表示全局对象。</li>
+<li>在函数中，this 表示全局对象。</li>
+<li>在函数中，在严格模式下，this 是未定义的(undefined)。</li>
+<li>在事件中，this 表示接收事件的元素。</li>
+<li>类似 call() 和 apply() 方法可以将 this 引用到任何对象。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://kisugitakumi.oss-cn-chengdu.aliyuncs.com/img10/image-20220213203508337.png"></p>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>通过一个构造函数创建的对象，我们称该对象时这个构造函数的<strong>实例</strong>。</p>
+<p>构造函数就是一个普通的函数，<strong>只是他的调用方式不同</strong>，如果直接调用，它就是一个普通函数；如果使用new来调用，则它就是一个构造函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 构造函数首字母一般大写</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Person</span>(<span class="params">name , age , gender</span>)&#123;</span><br><span class="line">    <span class="comment">// 这里的this指向要创建的对象，这里为person</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">name</span> = name;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">age</span> = age;  </span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">gender</span> = gender;  </span><br><span class="line">    <span class="comment">// 添加一个方法</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">sayName</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;  </span><br><span class="line">        <span class="title function_">alert</span>(<span class="variable language_">this</span>.<span class="property">name</span>);  </span><br><span class="line">    &#125;;  </span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// new调用</span></span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="title class_">Person</span>(<span class="string">&quot;Hongyi&quot;</span>, <span class="number">20</span>, <span class="string">&quot;male&quot;</span>);</span><br><span class="line"><span class="comment">// 普通调用</span></span><br><span class="line"><span class="keyword">var</span> person2 = <span class="title class_">Person</span>(<span class="string">&quot;Hongyi&quot;</span>, <span class="number">20</span>, <span class="string">&quot;male&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>构造函数的执行过程：</p>
+<ol>
+<li>创建一个新的对象</li>
+<li>将新的对象作为函数的上下文对象（this）</li>
+<li>执行函数中的代码</li>
+<li>将新建的对象返回</li>
+</ol>
+<blockquote>
+<p>intanceof关键字</p>
+</blockquote>
+<p>作用：用来检查一个对象是否是一个类的实例。如果该对象时构造函数的实例，则返回true，否则返回false</p>
+<p>注意：Object是所有对象的祖先，所以任何对象和Object做instanceof都会返回true</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(person <span class="keyword">instanceof</span> <span class="title class_">Person</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>是当外部函数返回内部函数时，内部函数随后在不同的范围内执行，内部函数继续保持对外部函数变量的访问，即使外部函数不再存在。</p>
+<p>需要满足以下的条件：</p>
+<ol>
+<li>有函数嵌套</li>
+<li>内部函数引用外部作用的变量参数</li>
+<li>返回值是函数</li>
+<li>创建一个对象函数，让其长期驻留好处</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Function</span> <span class="title function_">fa</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="title class_">Let</span> a=<span class="number">10</span>;</span><br><span class="line">  <span class="title class_">Function</span> <span class="title function_">fb</span>(<span class="params"></span>)&#123;</span><br><span class="line">	a--;</span><br><span class="line">	<span class="title class_">Console</span>.<span class="title function_">log</span>(a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title class_">Return</span> fb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><ul>
+<li>不再使用的对象的内存将会自动回收，这种功能称作垃圾回收。</li>
+<li>所谓不再使用的对象，指的是没有被任何一个属性（变量）引用的对象。</li>
+<li>垃圾回收的目的是，使开发者不必为对象的生命周期管理花费太多精力。</li>
+</ul>
+<h1 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Model）</p>
+<p><img src="/img/loading.gif" data-original="https://www.runoob.com/images/pic_htmltree.gif" alt="DOM HTML tree"></p>
+<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>节点Node，是构成我们网页的最基本的组成部分，是构成HTML文档最基本的单元。网页中的每一个部分都可以称为是一个节点</p>
+<p>常用节点分为四类：</p>
+<ol>
+<li>文档节点：整个HTML文档</li>
+<li>元素节点：HTML文档中的众多HTML标签</li>
+<li>属性节点：元素节点的属性</li>
+<li>文本节点：HTML标签中的文本内容</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://kisugitakumi.oss-cn-chengdu.aliyuncs.com/img10/image-20220214105003876.png" alt="image-20220214105003876"></p>
+<p><strong>节点的属性</strong>：nodeName，nodeType，nodeValue</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">|      | nodeName | nodeType | nodeValue |</span><br><span class="line">| ----------- | ----------- |----------|-----------|</span><br><span class="line">| 文档节点     | #document     | 9 | null |</span><br><span class="line">| 元素节点  | 标签名       | 1 | null |</span><br><span class="line">|属性节点 |	属性名 | 2 | 属性值|</span><br><span class="line">|文本节点 |	#text | 3 | 文本内容|</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>文档结点document</p>
+</blockquote>
+<p>文档节点document，代表的是整个HTML文档，网页中的所有节点都是它的子节点。</p>
+<p><strong>document对象作为window对象的属性存在的，</strong>我们不用获取可以直接使用。</p>
+<p>通过该对象我们可以在整个文档访问内查找节点对象，并可以通过该对象创建各种节点对象。</p>
+<blockquote>
+<p>元素结点Element</p>
+</blockquote>
+<p>HTML中的各种标签都是元素节点，这也是我们最常用的一个节点。</p>
+<p>浏览器会将页面中所有的标签都转换为一个元素节点，我们可以通过document的方法来获取元素节点。</p>
+<p>例如：document.getElementById()：根据id属性值获取一个元素节点对象</p>
+<blockquote>
+<p>文本节点Text</p>
+</blockquote>
+<p>文本节点表示的是HTML标签以外的文本内容，任意非HTML的文本都是文本节点。</p>
+<p>文本节点一般是作为元素节点的子节点存在的。</p>
+<blockquote>
+<p>属性节点Attr</p>
+</blockquote>
+<p>属性节点表示的是标签中的一个一个的属性，这里要注意的是属性节点并非是元素节点的子节点，而是元素节点的一部分</p>
+<p>可以通过元素节点来获取指定的属性节点</p>
+<p>例如：<strong>元素节点.getAttributeNode(“属性名”)</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	<span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;btn&quot;</span>&gt;</span>我是一个按钮<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="comment">// 获取document对象</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="comment">// 获取button对象</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&quot;btn&quot;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="variable language_">console</span>.<span class="title function_">log</span>(btn);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        </span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="comment">// 修改按钮的文字</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        btn.<span class="property">innerHTML</span> = <span class="string">&quot;Hello World&quot;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="DOM加载"><a href="#DOM加载" class="headerlink" title="DOM加载"></a>DOM加载</h2><p>浏览器在加载一个页面时，是按照自上向下的顺序加载的，加载一行执行一行。如果将js代码编写到页面的上边（例如写在head中），当代码执行时，页面中的DOM对象还没有加载，此时将会无法正常获取到DOM对象，<strong>导致DOM操作失败。</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//该代码点击失败</span></span><br><span class="line">&lt;!<span class="variable constant_">DOCTYPE</span> html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        var btn = document.getElementById(&quot;btn&quot;);</span><br><span class="line">        btn.onclick = function() &#123;</span><br><span class="line">            alert(&quot;hello&quot;);</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;button id=&quot;btn&quot;&gt;点我一下&lt;/button&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>解决方式</p>
+</blockquote>
+<ul>
+<li>可以将js代码编写到body的下边</li>
+<li>将js代码编写到window.onload = function(){}中，window.onload 对应的回调函数会在整个页面加载完毕以后才执行，所以可以确保代码执行时，DOM对象已经加载完毕了</li>
+</ul>
+<h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>通过可编程的对象模型，JavaScript 获得了足够的能力来创建动态的 HTML。</p>
+<ul>
+<li>JavaScript 能够改变页面中的所有 HTML 元素</li>
+<li>JavaScript 能够改变页面中的所有 HTML 属性</li>
+<li>JavaScript 能够改变页面中的所有 CSS 样式</li>
+<li>JavaScript 能够对页面中的所有事件做出反应</li>
+</ul>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>我们通过为指定事件<strong>绑定回调函数</strong>的形式来处理事件，当指定事件触发以后我们的回调函数就会被调用，这样我们的页面就可以完成和用户的交互了。</p>
+<h2 id="事件处理程序"><a href="#事件处理程序" class="headerlink" title="事件处理程序"></a>事件处理程序</h2><p>我们可以通过三种方式为一个元素绑定事件处理程序：</p>
+<ul>
+<li><p>通过HTML元素指定事件属性来绑定</p>
+</li>
+<li><p>通过DOM对象指定的属性来绑定（推荐）</p>
+</li>
+<li><p>设置事件监听器</p>
+</li>
+</ul>
+<blockquote>
+<p>通过HTML标签的属性设置</p>
+</blockquote>
+<p>通过HTML属性来绑定事件处理程序是最简单的方式。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">&quot;alert(&#x27;hello&#x27;);alert(&#x27;world&#x27;)&quot;</span>&gt;按钮&lt;/button&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 通过DOM对象的属性绑定</p>
+</blockquote>
+<p>其实上面的写法虽然简单，但却将JS和HTML的代码编写到了一起，并不推荐使用，我们更推荐如下的写法:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> btn = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;btn&#x27;</span>);</span><br><span class="line"><span class="comment">// 通过DOM对象的属性绑定</span></span><br><span class="line">btn.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这种写法将HTML代码和JS写在不同的位置，维护起来更加容易。</p>
+<blockquote>
+<p>设置事件监听器</p>
+</blockquote>
+<p>前边两种方式都可以绑定事件处理程序，但是它们都有一个缺点就是都只能绑定一个程序，而不能为一个事件绑定多个程序。</p>
+<p>这时我们就可以使用addEventListener()来处理，这个方法需要两个参数：一个是事件字符串，一个是<strong>响应函数</strong>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.<span class="title function_">addEventListener</span>(<span class="string">&quot;click&quot;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">alert</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="事件对象"><a href="#事件对象" class="headerlink" title="事件对象"></a>事件对象</h2><p>当响应函数被调用时，浏览器每次都会将一个事件对象event作为实参传递进响应函数中，这个事件对象中封装了当前事件的相关信息，比如：鼠标的坐标，键盘的按键，鼠标的按键，滚轮的方向等等。</p>
+<p>DOM标准的浏览器会将一个event对象传入到事件的处理程序当中。无论事件处理程序是什么都会传入一个event对象。</p>
+<p>可以在响应函数中定义一个形参，来接收该事件对象，但是在IE8以下浏览器中事件对象没有做完实参传递，而是作为window对象的属性保存。可以通过这种方式获取：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">btn.<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params">event</span>)&#123;</span><br><span class="line">	<span class="title function_">alert</span>(event.<span class="property">type</span>);</span><br><span class="line">    <span class="comment">// alert(window.event);</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Event对象包含与创建它的特定事件有关的属性和方法。触发的事件类型不一样，可用的属性和方法也不一样。</p>
+<blockquote>
+<p>Event对象的通用属性/方法</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://kisugitakumi.oss-cn-chengdu.aliyuncs.com/img10/image-20220216174721695.png" alt="image-20220216174721695"></p>
+<p><strong>转载于：</strong></p>
+<p>作者: Kisugi Takumi<br>链接: <a target="_blank" rel="noopener" href="https://kisugitakumi.com/2022/02/13/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#10-4-2-%E4%BB%A3%E7%A0%81%E5%88%86%E7%B1%BB%E5%92%8CJS%E5%BC%95%E6%93%8E%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B">https://kisugitakumi.com/2022/02/13/JavaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#10-4-2-%E4%BB%A3%E7%A0%81%E5%88%86%E7%B1%BB%E5%92%8CJS%E5%BC%95%E6%93%8E%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B</a><br>来源: Kisugi Takumi</p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><a class="post-meta__tags" href="/tags/JavaScript/">JavaScript</a></div><div class="post_share"><div class="social-share" data-image="https://kisugitakumi.com/img/javascript.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92-1.html" title="2021春节期间学习计划"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/plan.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">2021春节期间学习计划</div></div></a></div><div class="next-post pull-right"><a href="/post/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="css学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/css.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">css学习笔记</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="css学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/css.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-07</div><div class="title">css学习笔记</div></div></a></div><div><a href="/post/Vue%E5%AD%A6%E4%B9%A0%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86.html" title="Vue学习补充知识"><img class="cover" src="/img/loading.gif" data-original="https://img1.sycdn.imooc.com/5fe209840001573a12000642.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-06</div><div class="title">Vue学习补充知识</div></div></a></div><div><a href="/post/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="axios学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/axios.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">axios学习笔记</div></div></a></div><div><a href="/post/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="微信小程序学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/weixinxiaochengxu.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-14</div><div class="title">微信小程序学习笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM%E5%92%8CBOM"><span class="toc-number">1.</span> <span class="toc-text">DOM和BOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JS%E7%BB%84%E6%88%90"><span class="toc-number">1.1.</span> <span class="toc-text">JS组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM-DOCUMENT-BOM-WINDOW%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.</span> <span class="toc-text">DOM DOCUMENT BOM WINDOW的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JS%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">JS简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%A4%A7%E7%BB%84%E6%88%90"><span class="toc-number">2.1.</span> <span class="toc-text">三大组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">特点</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">基本语法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.2.</span> <span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E4%B8%BAString"><span class="toc-number">3.2.1.</span> <span class="toc-text">转换为String</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2%E4%B8%BAnumber"><span class="toc-number">3.2.2.</span> <span class="toc-text">转换为number</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1"><span class="toc-number">4.</span> <span class="toc-text">对象</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%93%8D%E4%BD%9C"><span class="toc-number">4.1.</span> <span class="toc-text">对象操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E5%92%8C%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.1.</span> <span class="toc-text">创建对象和添加属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE%E5%B1%9E%E6%80%A7"><span class="toc-number">4.1.2.</span> <span class="toc-text">访问属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.</span> <span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E%E4%B8%8E%E8%B0%83%E7%94%A8"><span class="toc-number">4.2.1.</span> <span class="toc-text">函数声明与调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%94%E5%9B%9E%E5%80%BC%E4%B8%8E%E6%96%B9%E6%B3%95"><span class="toc-number">4.2.2.</span> <span class="toc-text">返回值与方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="toc-number">4.2.3.</span> <span class="toc-text">作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95"><span class="toc-number">4.2.4.</span> <span class="toc-text">函数的属性和方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#this%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">4.2.5.</span> <span class="toc-text">this关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.6.</span> <span class="toc-text">构造函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AD%E5%8C%85"><span class="toc-number">4.2.7.</span> <span class="toc-text">闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="toc-number">4.3.</span> <span class="toc-text">垃圾回收</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DOM"><span class="toc-number">5.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">5.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9"><span class="toc-number">5.2.</span> <span class="toc-text">节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM%E5%8A%A0%E8%BD%BD"><span class="toc-number">5.3.</span> <span class="toc-text">DOM加载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E5%A4%84"><span class="toc-number">5.4.</span> <span class="toc-text">用处</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6"><span class="toc-number">6.</span> <span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F"><span class="toc-number">6.1.</span> <span class="toc-text">事件处理程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1"><span class="toc-number">6.2.</span> <span class="toc-text">事件对象</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Blank</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的个人博客</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(e){e.imageLazyLoadSetting.processImages=t;var n=e.imageLazyLoadSetting.isSPA,i=e.imageLazyLoadSetting.preloadRatio||1,r=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){n&&(r=o());for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(e.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];e=function(){r=r.filter(function(t){return o!==t})},(t=o).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,t.removeAttribute("data-original"),e&&e()},t.src!==i&&(n.src=i))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),e.addEventListener("resize",a),e.addEventListener("orientationchange",a)}(this);</script></body></html>
