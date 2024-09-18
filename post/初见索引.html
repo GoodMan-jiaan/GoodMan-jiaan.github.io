@@ -1,0 +1,358 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>初见索引 | Blank</title><meta name="author" content="Blank"><meta name="copyright" content="Blank"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="面试中，MySQL 索引相关的问题基本都是一系列问题，都是先从索引的基本原理，再到索引的使用场景"><link rel="shortcut icon" href="/img/%E5%A4%B4%E5%83%8F.jpg"><link rel="canonical" href="http://example.com/post/%E5%88%9D%E8%A7%81%E7%B4%A2%E5%BC%95.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":50},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Blank","link":"链接: ","source":"来源: Blank","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '初见索引',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-19 00:18:35'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/memorandum/"><i class="fa-fw fa fa-pen"></i><span> 备忘录</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-face-grin-beam-sweat"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_链接图片.png')"><nav id="nav"><span id="blog-info"><a href="/" title="Blank"><span class="site-name">Blank</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/memorandum/"><i class="fa-fw fa fa-pen"></i><span> 备忘录</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-face-grin-beam-sweat"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">初见索引</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-10-31T16:00:00.000Z" title="发表于 2023-11-01 00:00:00">2023-11-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-18T16:18:35.921Z" title="更新于 2024-09-19 00:18:35">2024-09-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">7.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>24分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="初见索引"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="初见索引"><a href="#初见索引" class="headerlink" title="初见索引"></a>初见索引</h1><p>面试中，MySQL 索引相关的问题基本都是一系列问题，都是先从索引的基本原理，再到索引的使用场景，比如：</p>
+<ul>
+<li>索引底层使用了什么数据结构和算法？</li>
+<li>为什么 MySQL InnoDB 选择 B+tree 作为索引的数据结构？</li>
+<li>什么时候适用索引？</li>
+<li>什么时候不需要创建索引？</li>
+<li>什么情况下索引会失效？</li>
+<li>有什么优化索引的方法？<br>…..<br>今天就带大家，夯实 MySQL 索引的知识点。<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E7%B4%A2%E5%BC%95%E7%9F%A5%E8%AF%86%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" alt="索引知识架构图"><h2 id="什么是索引？"><a href="#什么是索引？" class="headerlink" title="什么是索引？"></a>什么是索引？</h2>当你想查阅书中某个知识的内容，你会选择一页一页的找呢？还是在书的目录去找呢？</li>
+</ul>
+<p>傻瓜都知道时间是宝贵的，当然是选择在书的目录去找，找到后再翻到对应的页。书中的<strong>目录</strong>，就是充当<strong>索引</strong>的角色，方便我们快速查找书中的内容，所以索引是以空间换时间的设计思想。</p>
+<p>那换到数据库中，索引的定义就是帮助存储引擎快速获取数据的一种数据结构，形象的说就是<strong>索引是数据的目录</strong>。</p>
+<p>所谓的存储引擎，说白了就是如何存储数据、如何为存储的数据建立索引和如何更新、查询数据等技术的实现方法。MySQL 存储引擎有 MyISAM 、InnoDB、Memory，其中 InnoDB 是在 MySQL 5.5 之后成为默认的存储引擎。</p>
+<p>下图是 MySQL 的结构图，索引和数据就是位于存储引擎中：<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_MYSQL%E6%9E%B6%E6%9E%84%E5%9B%BE.jpg" alt="MYSQL架构图"></p>
+<h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><p>你知道索引有哪些吗？大家肯定都能霹雳啪啦地说出聚簇索引、主键索引、二级索引、普通索引、唯一索引、hash索引、B+树索引等等。</p>
+<p>然后再问你，你能将这些索引分一下类吗？可能大家就有点模糊了。其实，要对这些索引进行分类，要清楚这些索引的使用和实现方式，然后再针对有相同特点的索引归为一类。</p>
+<p>我们可以按照四个角度来分类索引。</p>
+<ul>
+<li>按「数据结构」分类：B+tree索引、Hash索引、Full-text索引。</li>
+<li>按「物理存储」分类：聚簇索引（主键索引）、二级索引（辅助索引）。</li>
+<li>按「字段特性」分类：主键索引、唯一索引、普通索引、前缀索引。</li>
+<li>按「字段个数」分类：单列索引、联合索引。<br>接下来，按照这些角度来说说各类索引的特点。</li>
+</ul>
+<h3 id="按数据结构分类"><a href="#按数据结构分类" class="headerlink" title="按数据结构分类"></a>按数据结构分类</h3><p>从数据结构的角度来看，MySQL 常见索引有 B+Tree 索引、HASH 索引、Full-Text 索引。</p>
+<p>每一种存储引擎支持的索引类型不一定相同，我在表中总结了 MySQL 常见的存储引擎 InnoDB、MyISAM 和 Memory 分别支持的索引类型。<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB.jpg" alt="索引结构分类"><br>InnoDB 是在 MySQL 5.5 之后成为默认的 MySQL 存储引擎，B+Tree 索引类型也是 MySQL 存储引擎采用最多的索引类型。</p>
+<p>在创建表时，InnoDB 存储引擎会根据不同的场景选择不同的列作为索引：</p>
+<ul>
+<li>如果有主键，默认会使用主键作为聚簇索引的索引键（key）；</li>
+<li>如果没有主键，就选择第一个不包含 NULL 值的唯一列作为聚簇索引的索引键（key）；</li>
+<li>在上面两个都没有的情况下，InnoDB 将自动生成一个隐式自增 id 列作为聚簇索引的索引键（key）；<br>其它索引都属于辅助索引（Secondary Index），也被称为二级索引或非聚簇索引。<strong>创建的主键索引和二级索引默认使用的是 B+Tree 索引</strong>。</li>
+</ul>
+<p>为了让大家理解 B+Tree 索引的存储和查询的过程，接下来我通过一个简单例子，说明一下 B+Tree 索引在存储数据中的具体实现。</p>
+<p>先创建一张商品表，id 为主键，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `product`  (</span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `product_no` <span class="type">varchar</span>(<span class="number">20</span>)  <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  `price` <span class="type">decimal</span>(<span class="number">10</span>, <span class="number">2</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`) <span class="keyword">USING</span> BTREE</span><br><span class="line">) <span class="type">CHARACTER</span> <span class="keyword">SET</span> <span class="operator">=</span> utf8 <span class="keyword">COLLATE</span> <span class="operator">=</span> utf8_general_ci ROW_FORMAT <span class="operator">=</span> <span class="keyword">Dynamic</span>;</span><br></pre></td></tr></table></figure>
+<p>商品表里，有这些行数据：<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E5%95%86%E5%93%81%E8%A1%A8%E6%95%B0%E6%8D%AE.jpg" alt="商品表数据"><br>这些行数据，存储在 B+Tree 索引时是长什么样子的？</p>
+<p>B+Tree 是一种多叉树，叶子节点才存放数据，非叶子节点只存放索引，而且每个节点里的数据是<strong>按主键顺序存放</strong>的。每一层父节点的索引值都会出现在下层子节点的索引值中，因此在叶子节点中，包括了所有的索引值信息，并且每一个叶子节点都有两个指针，分别指向下一个叶子节点和上一个叶子节点，形成一个双向链表。</p>
+<p>主键索引的 B+Tree 如图所示（图中叶子节点之间我画了单向链表，但是实际上是双向链表，原图我找不到了，修改不了，偷个懒我不重画了，大家脑补成双向链表就行）：<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_B+Tree.jpg" alt="B+Tree"></p>
+<blockquote>
+<p>通过主键查询商品数据的过程</p>
+</blockquote>
+<p>比如，我们执行了下面这条查询语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> product <span class="keyword">where</span> id<span class="operator">=</span> <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<p>这条语句使用了主键索引查询 id 号为 5 的商品。查询过程是这样的，B+Tree 会自顶向下逐层进行查找：</p>
+<ul>
+<li>将 5 与根节点的索引数据 (1，10，20) 比较，5 在 1 和 10 之间，所以根据 B+Tree的搜索逻辑，找到第二层的索引数据 (1，4，7)；</li>
+<li>在第二层的索引数据 (1，4，7)中进行查找，因为 5 在 4 和 7 之间，所以找到第三层的索引数据（4，5，6）；</li>
+<li>在叶子节点的索引数据（4，5，6）中进行查找，然后我们找到了索引值为 5 的行数据。<br>数据库的索引和数据都是存储在硬盘的，我们可以把读取一个节点当作一次磁盘 I/O 操作。那么上面的整个查询过程一共经历了 3 个节点，也就是进行了 3 次 I/O 操作。</li>
+</ul>
+<p>B+Tree 存储千万级的数据只需要 3-4 层高度就可以满足，这意味着从千万级的表查询目标数据最多需要 3-4 次磁盘 I/O，<strong>所以B+Tree 相比于 B 树和二叉树来说，最大的优势在于查询效率很高，因为即使在数据量很大的情况，查询一个数据的磁盘 I/O 依然维持在 3-4次</strong>。</p>
+<blockquote>
+<p>通过二级索引查询商品数据的过程</p>
+</blockquote>
+<p>主键索引的 B+Tree 和二级索引的 B+Tree 区别如下：</p>
+<ul>
+<li>主键索引的 B+Tree 的叶子节点存放的是实际数据，所有完整的用户记录都存放在主键索引的 B+Tree 的叶子节点里；</li>
+<li>二级索引的 B+Tree 的叶子节点存放的是主键值，而不是实际数据。<br>我这里将前面的商品表中的 product_no （商品编码）字段设置为二级索引，那么二级索引的 B+Tree 如下图（图中叶子节点之间我画了单向链表，但是实际上是双向链表，原图我找不到了，修改不了，偷个懒我不重画了，大家脑补成双向链表就行）。<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E4%BA%8C%E7%BA%A7%E7%B4%A2%E5%BC%95B+Tree.jpg" alt="二级索引B+Tree"><br>其中非叶子的 key 值是 product_no（图中橙色部分），叶子节点存储的数据是主键值（图中绿色部分）。</li>
+</ul>
+<p>如果我用 product_no 二级索引查询商品，如下查询语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> product <span class="keyword">where</span> product_no <span class="operator">=</span> <span class="string">&#x27;0002&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p>会先检二级索引中的 B+Tree 的索引值（商品编码，product_no），找到对应的叶子节点，然后获取主键值，然后再通过主键索引中的 B+Tree 树查询到对应的叶子节点，然后获取整行数据。这个过程叫「回表」，也就是说要查两个 B+Tree 才能查到数据。如下图:<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_B+Tree%E5%9B%9E%E8%A1%A8.jpg" alt="B+Tree回表"><br>不过，当查询的数据是能在二级索引的 B+Tree 的叶子节点里查询到，这时就不用再查主键索引查，比如下面这条查询语句：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> id <span class="keyword">from</span> product <span class="keyword">where</span> product_no <span class="operator">=</span> <span class="string">&#x27;0002&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>这种在二级索引的 B+Tree 就能查询到结果的过程就叫作「覆盖索引」，也就是只需要查一个 B+Tree 就能找到数据。</strong></p>
+<blockquote>
+<p>为什么 MySQL InnoDB 选择 B+tree 作为索引的数据结构？<br>前面已经讲了 B+Tree 的索引原理，现在就来回答一下 B+Tree 相比于 B 树、二叉树或 Hash 索引结构的优势在哪儿？<br><strong>1、B+Tree vs B Tree</strong></p>
+</blockquote>
+<p>B+Tree 只在叶子节点存储数据，而 B 树 的非叶子节点也要存储数据，所以 B+Tree 的单个节点的数据量更小，在相同的磁盘 I/O 次数下，就能查询更多的节点。</p>
+<p>另外，B+Tree 叶子节点采用的是双链表连接，适合 MySQL 中常见的基于范围的顺序查找，而 B 树无法做到这一点。</p>
+<p><strong>2、B+Tree vs 二叉树</strong></p>
+<p>对于有 N 个叶子节点的 B+Tree，其搜索复杂度为O(logdN)，其中 d 表示节点允许的最大子节点个数为 d 个。</p>
+<p>在实际的应用当中， d 值是大于100的，这样就保证了，即使数据达到千万级别时，B+Tree 的高度依然维持在 3<del>4 层左右，也就是说一次数据查询操作只需要做 3</del>4 次的磁盘 I/O 操作就能查询到目标数据。</p>
+<p>而二叉树的每个父节点的儿子节点个数只能是 2 个，意味着其搜索复杂度为 O(logN)，这已经比 B+Tree 高出不少，因此二叉树检索到目标数据所经历的磁盘 I/O 次数要更多。</p>
+<p><strong>3、B+Tree vs Hash</strong></p>
+<p>Hash 在做等值查询的时候效率贼快，搜索复杂度为 O(1)。</p>
+<p>但是 Hash 表不适合做范围查询，它更适合做等值的查询，这也是 B+Tree 索引要比 Hash 表索引有着更广泛的适用场景的原因。</p>
+<h3 id="按物理存储分类"><a href="#按物理存储分类" class="headerlink" title="按物理存储分类"></a>按物理存储分类</h3><p>从物理存储的角度来看，索引分为聚簇索引（主键索引）、二级索引（辅助索引）。</p>
+<p>这两个区别在前面也提到了：</p>
+<ul>
+<li>主键索引的 B+Tree 的叶子节点存放的是实际数据，所有完整的用户记录都存放在主键索引的 B+Tree 的叶子节点里；</li>
+<li>二级索引的 B+Tree 的叶子节点存放的是主键值，而不是实际数据。<br>所以，在查询时使用了二级索引，如果查询的数据能在二级索引里查询的到，那么就不需要回表，这个过程就是覆盖索引。如果查询的数据不在二级索引里，就会先检索二级索引，找到对应的叶子节点，获取到主键值后，然后再检索主键索引，就能查询到数据了，这个过程就是回表。</li>
+</ul>
+<h3 id="按字段特性分类"><a href="#按字段特性分类" class="headerlink" title="按字段特性分类"></a>按字段特性分类</h3><p>从字段特性的角度来看，索引分为主键索引、唯一索引、普通索引、前缀索引。</p>
+<blockquote>
+<p>主键索引<br>主键索引就是建立在主键字段上的索引，通常在创建表的时候一起创建，一张表最多只有一个主键索引，索引列的值不允许有空值。</p>
+</blockquote>
+<p>在创建表时，创建主键索引的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name  (</span><br><span class="line">  ....</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (index_column_1) <span class="keyword">USING</span> BTREE</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>唯一索引<br>唯一索引建立在 UNIQUE 字段上的索引，一张表可以有多个唯一索引，索引列的值必须唯一，但是允许有空值。</p>
+</blockquote>
+<p>在创建表时，创建唯一索引的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name  (</span><br><span class="line">  ....</span><br><span class="line">  <span class="keyword">UNIQUE</span> KEY(index_column_1,index_column_2,...) </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>建表后，如果要创建唯一索引，可以使用这面这条命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX index_name</span><br><span class="line"><span class="keyword">ON</span> table_name(index_column_1,index_column_2,...); </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>普通索引<br>普通索引就是建立在普通字段上的索引，既不要求字段为主键，也不要求字段为 UNIQUE。</p>
+</blockquote>
+<p>在创建表时，创建普通索引的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name  (</span><br><span class="line">  ....</span><br><span class="line">  INDEX(index_column_1,index_column_2,...) </span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>建表后，如果要创建普通索引，可以使用这面这条命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX index_name</span><br><span class="line"><span class="keyword">ON</span> table_name(index_column_1,index_column_2,...); </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>前缀索引<br>前缀索引是指对字符类型字段的前几个字符建立的索引，而不是在整个字段上建立的索引，前缀索引可以建立在字段类型为 char、 varchar、binary、varbinary 的列上。</p>
+</blockquote>
+<p>使用前缀索引的目的是为了减少索引占用的存储空间，提升查询效率。</p>
+<p>在创建表时，创建前缀索引的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name(</span><br><span class="line">    column_list,</span><br><span class="line">    INDEX(column_name(length))</span><br><span class="line">); </span><br></pre></td></tr></table></figure>
+<p>建表后，如果要创建前缀索引，可以使用这面这条命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX index_name</span><br><span class="line"><span class="keyword">ON</span> table_name(column_name(length)); </span><br></pre></td></tr></table></figure>
+<h3 id="按字段个数分类"><a href="#按字段个数分类" class="headerlink" title="按字段个数分类"></a>按字段个数分类</h3><p>从字段个数的角度来看，索引分为单列索引、联合索引（复合索引）。</p>
+<ul>
+<li>建立在单列上的索引称为单列索引，比如主键索引；</li>
+<li>建立在多列上的索引称为联合索引；</li>
+</ul>
+<blockquote>
+<p>联合索引<br>通过将多个字段组合成一个索引，该索引就被称为联合索引。</p>
+</blockquote>
+<p>比如，将商品表中的 product_no 和 name 字段组合成联合索引(product_no, name)，创建联合索引的方式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX index_product_no_name <span class="keyword">ON</span> product(product_no, name);</span><br></pre></td></tr></table></figure>
+<p>联合索引(product_no, name) 的 B+Tree 示意图如下:<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_B+Tree%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="B+Tree双向链表示意图"><br>可以看到，联合索引的非叶子节点用两个字段的值作为 B+Tree 的 key 值。当在联合索引查询数据时，先按 product_no 字段比较，在 product_no 相同的情况下再按 name 字段比较。</p>
+<p>也就是说，联合索引查询的 B+Tree 是先按 product_no 进行排序，然后再 product_no 相同的情况再按 name 字段排序。</p>
+<p>因此，使用联合索引时，存在<strong>最左匹配原则</strong>，也就是按照最左优先的方式进行索引的匹配。在使用联合索引进行查询的时候，如果不遵循「最左匹配原则」，联合索引会失效，这样就无法利用到索引快速查询的特性了。</p>
+<p>比如，如果创建了一个 (a, b, c) 联合索引，如果查询条件是以下这几种，就可以匹配上联合索引：</p>
+<ul>
+<li>where a=1；</li>
+<li>where a=1 and b=2 and c=3；</li>
+<li>where a=1 and b=2；<br>需要注意的是，因为有查询优化器，所以 a 字段在 where 子句的顺序并不重要。</li>
+</ul>
+<p>但是，如果查询条件是以下这几种，因为不符合最左匹配原则，所以就无法匹配上联合索引，联合索引就会失效:</p>
+<ul>
+<li>where b=2；</li>
+<li>where c=3；</li>
+<li>where b=2 and c=3；<br>上面这些查询条件之所以会失效，是因为(a, b, c) 联合索引，是先按 a 排序，在 a 相同的情况再按 b 排序，在 b 相同的情况再按 c 排序。所以，<strong>b 和 c 是全局无序，局部相对有序的</strong>，这样在没有遵循最左匹配原则的情况下，是无法利用到索引的。<br>我这里举联合索引（a，b）的例子，该联合索引的 B+ Tree 如下:<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_B+Tree%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E7%A4%BA%E6%84%8F%E5%9B%BE2.jpg"><br>可以看到，a 是全局有序的（1, 2, 2, 3, 4, 5, 6, 7 ,8），而 b 是全局是无序的（12，7，8，2，3，8，10，5，2）。因此，直接执行where b = 2这种查询条件没有办法利用联合索引的，<strong>利用索引的前提是索引里的 key 是有序的</strong>。</li>
+</ul>
+<p>只有在 a 相同的情况才，b 才是有序的，比如 a 等于 2 的时候，b 的值为（7，8），这时就是有序的，这个有序状态是局部的，因此，执行where a = 2 and b = 7是 a 和 b 字段能用到联合索引的，也就是联合索引生效了。</p>
+<h2 id="联合索引范围查询"><a href="#联合索引范围查询" class="headerlink" title="联合索引范围查询"></a>联合索引范围查询</h2><p>联合索引有一些特殊情况，并不是查询过程使用了联合索引查询，就代表联合索引中的所有字段都用到了联合索引进行索引查询，也就是可能存在部分字段用到联合索引的 B+Tree，部分字段没有用到联合索引的 B+Tree 的情况。</p>
+<p>这种特殊情况就发生在范围查询。联合索引的最左匹配原则会一直向右匹配直到遇到「范围查询」就会停止匹配。也就是范围查询的字段可以用到联合索引，但是在范围查询字段的后面的字段无法用到联合索引。</p>
+<p>范围查询有很多种，那到底是哪些范围查询会导致联合索引的最左匹配原则会停止匹配呢？</p>
+<p>接下来，举例几个范围查例子。</p>
+<blockquote>
+<p>Q1: select * from t_table where a &gt; 1 and b = 2，联合索引（a, b）哪一个字段用到了联合索引的 B+Tree？</p>
+</blockquote>
+<p>由于联合索引（二级索引）是先按照 a 字段的值排序的，所以符合 a &gt; 1 条件的二级索引记录肯定是相邻，于是在进行索引扫描的时候，可以定位到符合 a &gt; 1 条件的第一条记录，然后沿着记录所在的链表向后扫描，直到某条记录不符合 a &gt; 1 条件位置。所以 a 字段可以在联合索引的 B+Tree 中进行索引查询。</p>
+<p><strong>但是在符合 a &gt; 1 条件的二级索引记录的范围里，b 字段的值是无序的</strong>。比如前面图的联合索引的 B+ Tree 里，下面这三条记录的 a 字段的值都符合 a &gt; 1 查询条件，而 b 字段的值是无序的：</p>
+<ul>
+<li>a 字段值为 5 的记录，该记录的 b 字段值为 8；</li>
+<li>a 字段值为 6 的记录，该记录的 b 字段值为 10；</li>
+<li>a 字段值为 7 的记录，该记录的 b 字段值为 5；<br>因此，我们不能根据查询条件 b = 2 来进一步减少需要扫描的记录数量（b 字段无法利用联合索引进行索引查询的意思）。</li>
+</ul>
+<p>所以在执行 Q1 这条查询语句的时候，对应的扫描区间是 (2, + ∞)，形成该扫描区间的边界条件是 a &gt; 1，与 b = 2 无关。</p>
+<p>因此，<strong>Q1 这条查询语句只有 a 字段用到了联合索引进行索引查询，而 b 字段并没有使用到联合索引</strong>。<br>我们也可以在执行计划中的 key_len 知道这一点，在使用联合索引进行查询的时候，通过 key_len 我们可以知道优化器具体使用了多少个字段的搜索条件来形成扫描区间的边界条件。</p>
+<p>举例个例子 ，a 和 b 都是 int 类型且不为 NULL 的字段，那么 Q1 这条查询语句执行计划如下，可以看到 key_len 为 4 字节（如果字段允许为 NULL，就在字段类型占用的字节数上加 1，也就是 5 字节），说明只有 a 字段用到了联合索引进行索引查询，而且可以看到，即使 b 字段没用到联合索引，key 为 idx_a_b，说明 Q1 查询语句使用了 idx_a_b 联合索引。<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_a%E5%AD%97%E6%AE%B5%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95.jpg" alt="a字段联合索引"><br>通过 Q1 查询语句我们可以知道，a 字段使用了 &gt; 进行范围查询，联合索引的最左匹配原则在遇到 a 字段的范围查询（ &gt;）后就停止匹配了，因此 b 字段并没有使用到联合索引。</p>
+<blockquote>
+<p>Q2: select * from t_table where a &gt;= 1 and b = 2，联合索引（a, b）哪一个字段用到了联合索引的 B+Tree？</p>
+</blockquote>
+<p>Q2 和 Q1 的查询语句很像，唯一的区别就是 a 字段的查询条件「大于等于」。</p>
+<p>由于联合索引（二级索引）是先按照 a 字段的值排序的，所以符合 &gt;= 1 条件的二级索引记录肯定是相邻，于是在进行索引扫描的时候，可以定位到符合 &gt;= 1 条件的第一条记录，然后沿着记录所在的链表向后扫描，直到某条记录不符合 a&gt;= 1 条件位置。所以 a 字段可以在联合索引的 B+Tree 中进行索引查询。</p>
+<p>虽然在符合 a&gt;= 1 条件的二级索引记录的范围里，b 字段的值是「无序」的，<strong>但是对于符合 a = 1 的二级索引记录的范围里，b 字段的值是「有序」的</strong>（因为对于联合索引，是先按照 a 字段的值排序，然后在 a 字段的值相同的情况下，再按照 b 字段的值进行排序）。</p>
+<p>于是，在确定需要扫描的二级索引的范围时，当二级索引记录的 a 字段值为 1 时，可以通过 b = 2 条件减少需要扫描的二级索引记录范围（b 字段可以利用联合索引进行索引查询的意思）。也就是说，从符合 a = 1 and b = 2 条件的第一条记录开始扫描，而不需要从第一个 a 字段值为 1 的记录开始扫描。</p>
+<p>所以，<strong>Q2 这条查询语句 a 和 b 字段都用到了联合索引进行索引查询</strong>。</p>
+<p>我们也可以在执行计划中的 key_len 知道这一点。执行计划如下，可以看到 key_len 为 8 字节，说明优化器使用了 2 个字段的查询条件来形成扫描区间的边界条件，也就是 a 和 b 字段都用到了联合索引进行索引查询。<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_a%E4%B8%8Eb%E5%AD%97%E6%AE%B5%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95.jpg" alt="a与b字段联合索引"><br>通过 Q2 查询语句我们可以知道，虽然 a 字段使用了 &gt;= 进行范围查询，但是联合索引的最左匹配原则并没有在遇到 a 字段的范围查询（ &gt;=）后就停止匹配了，b 字段还是可以用到了联合索引的。</p>
+<blockquote>
+<p>Q3: SELECT * FROM t_table WHERE a BETWEEN 2 AND 8 AND b = 2，联合索引（a, b）哪一个字段用到了联合索引的 B+Tree？</p>
+</blockquote>
+<p>Q3 查询条件中 a BETWEEN 2 AND 8 的意思是查询 a 字段的值在 2 和 8 之间的记录。不同的数据库对 BETWEEN … AND 处理方式是有差异的。在 MySQL 中，BETWEEN 包含了 value1 和 value2 边界值，类似于 &gt;= and =&lt;。而有的数据库则不包含 value1 和 value2 边界值（类似于 &gt; and &lt;）。</p>
+<p>这里我们只讨论 MySQL。由于 MySQL 的 BETWEEN 包含 value1 和 value2 边界值，所以类似于 Q2 查询语句，因此 <strong>Q3 这条查询语句 a 和 b 字段都用到了联合索引进行索引查询</strong>。</p>
+<p>我们也可以在执行计划中的 key_len 知道这一点。执行计划如下，可以看到 key_len 为 8 字节，说明优化器使用了 2 个字段的查询条件来形成扫描区间的边界条件，也就是 a 和 b 字段都用到了联合索引进行索引查询。<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_a%E4%B8%8Eb%E5%AD%97%E6%AE%B5%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%952.jpg" alt="a与b字段联合索引2"><br>通过 Q3 查询语句我们可以知道，虽然 a 字段使用了 BETWEEN 进行范围查询，但是联合索引的最左匹配原则并没有在遇到 a 字段的范围查询（ BETWEEN）后就停止匹配了，b 字段还是可以用到了联合索引的。</p>
+<blockquote>
+<p>Q4: SELECT * FROM t_user WHERE name like ‘j%’ and age = 22，联合索引（name, age）哪一个字段用到了联合索引的 B+Tree？</p>
+</blockquote>
+<p>由于联合索引（二级索引）是先按照 name 字段的值排序的，所以前缀为 ‘j’ 的 name 字段的二级索引记录都是相邻的， 于是在进行索引扫描的时候，可以定位到符合前缀为 ‘j’ 的 name 字段的第一条记录，然后沿着记录所在的链表向后扫描，直到某条记录的 name 前缀不为 ‘j’ 为止。</p>
+<p>所以 a 字段可以在联合索引的 B+Tree 中进行索引查询，形成的扫描区间是[‘j’,‘k’)。注意， j 是闭区间。如下图：<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95index_name_age%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg" alt="联合索引index_name_age示意图"></p>
+<p>虽然在符合前缀为 ‘j’ 的 name 字段的二级索引记录的范围里，age 字段的值是「无序」的，<strong>但是对于符合 name = j 的二级索引记录的范围里，age字段的值是「有序」的</strong>（因为对于联合索引，是先按照 name 字段的值排序，然后在 name 字段的值相同的情况下，再按照 age 字段的值进行排序）。</p>
+<p>于是，在确定需要扫描的二级索引的范围时，当二级索引记录的 name 字段值为 ‘j’ 时，可以通过 age = 22 条件减少需要扫描的二级索引记录范围（age 字段可以利用联合索引进行索引查询的意思）。也就是说，从符合 name = ‘j’ and age = 22 条件的第一条记录时开始扫描，而不需要从第一个 name 为 j 的记录开始扫描 。如下图的右边：<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95index_name_age%E7%A4%BA%E6%84%8F%E5%9B%BE2.jpg" alt="联合索引index_name_age示意图2"><br>所以，Q4 这条查询语句 a 和 b 字段都用到了联合索引进行索引查询。</p>
+<p>我们也可以在执行计划中的 key_len 知道这一点。本次例子中：</p>
+<ul>
+<li>name 字段的类型是 varchar(30) 且不为 NULL，数据库表使用了 utf8mb4 字符集，一个字符集为 utf8mb4 的字符是 4 个字节，因此 name 字段的实际数据最多占用的存储空间长度是 120 字节（30 x 4），然后因为 name 是变长类型的字段，需要再加 2 字节（用于存储该字段实际数据的长度值），也就是 name 的 key_len 为 122。</li>
+<li>age 字段的类型是 int 且不为 NULL，key_len 为 4。<br>TIP</li>
+</ul>
+<p>可能有的同学对于「因为 name 是变长类型的字段，需要再加 2 字节」这句话有疑问。之前这篇文章 (opens new window)说「如果变长字段允许存储的最大字节数小于等于 255 字节，就会用 1 字节表示变长字段的长度」，而这里为什么是 2 字节？</p>
+<p>key_len 的显示比较特殊，行格式是由 innodb存 储引擎实现的，而执行计划是在server 层生成的，所以它不会去问 innodb 存储引擎可变字段的长度占用多少字节，而是不管三七二十一都使用 2 字节表示可变字段的长度。</p>
+<p>毕竟 key_len 的目的只是为了告诉你索引查询中用了哪些索引字段，而不是为了准确告诉这个字段占用多少字节空间。</p>
+<p>Q4 查询语句的执行计划如下，可以看到 key_len 为 126 字节，name 的 key_len 为 122，age 的 key_len 为 4，说明优化器使用了 2 个字段的查询条件来形成扫描区间的边界条件，也就是 name 和 age 字段都用到了联合索引进行索引查询。<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E7%B4%A2%E5%BC%95%E6%9F%A5%E8%AF%A2%E5%AD%97%E8%8A%82.jpg" alt="索引查询字节"><br>通过 Q4 查询语句我们可以知道，虽然 name 字段使用了 like 前缀匹配进行范围查询，但是联合索引的最左匹配原则并没有在遇到 name 字段的范围查询（ like ‘j%’）后就停止匹配了，age 字段还是可以用到了联合索引的。</p>
+<p><strong>综上所示，联合索引的最左匹配原则，在遇到范围查询（如 &gt;、&lt;）的时候，就会停止匹配，也就是范围查询的字段可以用到联合索引，但是在范围查询字段的后面的字段无法用到联合索引。注意，对于 &gt;=、&lt;=、BETWEEN、like 前缀匹配的范围查询，并不会停止匹配，前面我也用了四个例子说明了</strong>。</p>
+<h2 id="索引下推"><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h2><p>现在我们知道，对于联合索引（a, b），在执行 select * from table where a &gt; 1 and b = 2 语句的时候，只有 a 字段能用到索引，那在联合索引的 B+Tree 找到第一个满足条件的主键值（ID 为 2）后，还需要判断其他条件是否满足（看 b 是否等于 2），那是在联合索引里判断？还是回主键索引去判断呢？</p>
+<ul>
+<li>在 MySQL 5.6 之前，只能从 ID2 （主键值）开始一个个回表，到「主键索引」上找出数据行，再对比 b 字段值。</li>
+<li>而 MySQL 5.6 引入的<strong>索引下推优化</strong>（index condition pushdown)， <strong>可以在联合索引遍历过程中，对联合索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数</strong>。<br>当你的查询语句的执行计划里，出现了 Extra 为 Using index condition，那么说明使用了索引下推的优化</li>
+</ul>
+<h2 id="索引区分度"><a href="#索引区分度" class="headerlink" title="索引区分度"></a>索引区分度</h2><p>另外，建立联合索引时的字段顺序，对索引效率也有很大影响。越靠前的字段被用于索引过滤的概率越高，实际开发工作中<strong>建立联合索引时，要把区分度大的字段排在前面，这样区分度大的字段越有可能被更多的 SQL 使用到。</strong></p>
+<p>区分度就是某个字段 column 不同值的个数「除以」表的总行数，计算公式如下：<br><img src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_%E5%8C%BA%E5%88%86%E5%BA%A6%E5%85%AC%E5%BC%8F.jpg" alt="区分度公式"><br>比如，性别的区分度就很小，不适合建立索引或不适合排在联合索引列的靠前的位置，而 UUID 这类字段就比较适合做索引或排在联合索引列的靠前的位置。</p>
+<p>因为如果索引的区分度很小，假设字段的值分布均匀，那么无论搜索哪个值都可能得到一半的数据。在这些情况下，还不如不要索引，因为 MySQL 还有一个查询优化器，查询优化器发现某个值出现在表的数据行中的百分比（惯用的百分比界线是”30%”）很高的时候，它一般会忽略索引，进行全表扫描。</p>
+<h2 id="联合索引进行排序"><a href="#联合索引进行排序" class="headerlink" title="联合索引进行排序"></a>联合索引进行排序</h2><p>这里出一个题目，针对针对下面这条 SQL，你怎么通过索引来提高查询效率呢？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="keyword">order</span> <span class="keyword">where</span> status <span class="operator">=</span> <span class="number">1</span> <span class="keyword">order</span> <span class="keyword">by</span> create_time <span class="keyword">asc</span></span><br></pre></td></tr></table></figure>
+<p>有的同学会认为，单独给 status 建立一个索引就可以了。</p>
+<p>但是更好的方式给 status 和 create_time 列建立一个联合索引，因为这样可以避免 MySQL 数据库发生文件排序。</p>
+<p>因为在查询时，如果只用到 status 的索引，但是这条语句还要对 create_time 排序，这时就要用文件排序 filesort，也就是在 SQL 执行计划中，Extra 列会出现 Using filesort。</p>
+<p>所以，要利用索引的有序性，在 status 和 create_time 列建立联合索引，这样根据 status 筛选后的数据就是按照 create_time 排好序的，避免在文件排序，提高了查询效率。</p>
+<p>本节待续。。。</p>
+<h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/w1ZFOug8-Sa7ThtMnlaUtQ">女朋友问我：为什么 MySQL 喜欢 B+ 树？我笑着画了 20 张图</a><br><a target="_blank" rel="noopener" href="https://xiaolincoding.com/mysql/base/row_format.html">MySQL 一行记录是怎么存储的？</a></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><a class="post-meta__tags" href="/tags/MYSQL/">MYSQL</a><a class="post-meta__tags" href="/tags/%E7%B4%A2%E5%BC%95/">索引</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/46/46_链接图片.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/0.html" title=""><img class="cover" src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/post/%E6%89%A7%E8%A1%8C%E4%B8%80%E6%9D%A1select%E8%AF%AD%E5%8F%A5%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88.html" title="执行一条select语句，期间发生了什么"><img class="cover" src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/45/45_链接图片.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">执行一条select语句，期间发生了什么</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/%E6%89%A7%E8%A1%8C%E4%B8%80%E6%9D%A1select%E8%AF%AD%E5%8F%A5%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88.html" title="执行一条select语句，期间发生了什么"><img class="cover" src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/45/45_链接图片.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-13</div><div class="title">执行一条select语句，期间发生了什么</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%9D%E8%A7%81%E7%B4%A2%E5%BC%95"><span class="toc-number">1.</span> <span class="toc-text">初见索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B4%A2%E5%BC%95%EF%BC%9F"><span class="toc-number">1.1.</span> <span class="toc-text">什么是索引？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.</span> <span class="toc-text">索引分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">按数据结构分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E7%89%A9%E7%90%86%E5%AD%98%E5%82%A8%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">按物理存储分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E6%AE%B5%E7%89%B9%E6%80%A7%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.3.</span> <span class="toc-text">按字段特性分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E5%AD%97%E6%AE%B5%E4%B8%AA%E6%95%B0%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.4.</span> <span class="toc-text">按字段个数分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.3.</span> <span class="toc-text">联合索引范围查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8"><span class="toc-number">1.4.</span> <span class="toc-text">索引下推</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E5%8C%BA%E5%88%86%E5%BA%A6"><span class="toc-number">1.5.</span> <span class="toc-text">索引区分度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%94%E5%90%88%E7%B4%A2%E5%BC%95%E8%BF%9B%E8%A1%8C%E6%8E%92%E5%BA%8F"><span class="toc-number">1.6.</span> <span class="toc-text">联合索引进行排序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%AB%A0"><span class="toc-number">2.</span> <span class="toc-text">参考文章</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Blank</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的个人博客</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(e){e.imageLazyLoadSetting.processImages=t;var n=e.imageLazyLoadSetting.isSPA,i=e.imageLazyLoadSetting.preloadRatio||1,r=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){n&&(r=o());for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(e.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];e=function(){r=r.filter(function(t){return o!==t})},(t=o).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,t.removeAttribute("data-original"),e&&e()},t.src!==i&&(n.src=i))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),e.addEventListener("resize",a),e.addEventListener("orientationchange",a)}(this);</script></body></html>

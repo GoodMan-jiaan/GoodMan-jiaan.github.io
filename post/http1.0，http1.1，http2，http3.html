@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>http1.0，http1.1，http2，http3 | Blank</title><meta name="author" content="Blank"><meta name="copyright" content="Blank"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="HTTP1.0最早在网页中使用是在1996年，那个时候只是使用一些较为简单的网页上和网络请求上,是一种无状态、无连接的应用层协议，几年后被HTTP1.1代替并广泛使用"><link rel="shortcut icon" href="/img/%E5%A4%B4%E5%83%8F.jpg"><link rel="canonical" href="http://example.com/post/http1.0%EF%BC%8Chttp1.1%EF%BC%8Chttp2%EF%BC%8Chttp3.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":50},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: Blank","link":"链接: ","source":"来源: Blank","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'http1.0，http1.1，http2，http3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-18 22:28:37'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/%E5%A4%B4%E5%83%8F.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">66</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">9</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/memorandum/"><i class="fa-fw fa fa-pen"></i><span> 备忘录</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-face-grin-beam-sweat"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/44/44_连接图片.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="Blank"><span class="site-name">Blank</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/memorandum/"><i class="fa-fw fa fa-pen"></i><span> 备忘录</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-face-grin-beam-sweat"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">http1.0，http1.1，http2，http3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-08T16:00:00.000Z" title="发表于 2023-05-09 00:00:00">2023-05-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-18T14:28:37.328Z" title="更新于 2024-09-18 22:28:37">2024-09-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="http1.0，http1.1，http2，http3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="http1-0"><a href="#http1-0" class="headerlink" title="http1.0"></a>http1.0</h2><p>HTTP1.0最早在网页中使用是在1996年，那个时候只是使用一些较为简单的网页上和网络请求上,是一种<strong>无状态、无连接</strong>的应用层协议，几年后被HTTP1.1代替并广泛使用</p>
+<h2 id="http1-1"><a href="#http1-1" class="headerlink" title="http1.1"></a>http1.1</h2><ol>
+<li>http1.1基于文本解析,把所有请求和响应作为纯文本</li>
+<li>http1.1加入了缓存处理（强缓存和协商缓存）</li>
+<li>http1.1拥有长连接，并支持请求管道化（pipelining），</li>
+<li>http1.1流控制基于tcp连接。当连接建立时，两端通过系统默认机制建立缓冲区。并通过ack报文来通知对方接收窗口大小，因为http1.1 依靠传输层来避免流溢出，每个tcp连接需要一个独立的流控制机制</li>
+</ol>
+<h3 id="缓存处理（强缓存和协商缓存）"><a href="#缓存处理（强缓存和协商缓存）" class="headerlink" title="缓存处理（强缓存和协商缓存）"></a>缓存处理（强缓存和协商缓存）</h3><p>浏览器缓存能优化性能，而浏览器缓存分为强缓存和协商缓存，都是从客户端读取缓存强缓存</p>
+<ol>
+<li>强缓存不发送请求，直接读取资源，可以获得返回200的状态码</li>
+<li>利用http头中的Expires和Cache-Control两个字段来控制，都用来表示资源的缓存时间，Expires能设置失效时间，而Cache-Control能做到更多选项更细致，如果同时设置的话，其优先级高于Expires</li>
+</ol>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h3><ol>
+<li>通过服务器来确定缓存资源是否可用，通过request header判断是否命中请求，命中后返回304状态码，并返回新的request header通知客户端从缓存里取</li>
+<li>普通刷新会启用弱缓存，忽略强缓存。只有在地址栏或收藏夹输入网址、通过链接引用资源等情况下，浏览器才会启用强缓存</li>
+<li>如果时间过期，则向服务器发送header带有If-None-Match和If-Modified-Since的请求，回到1</li>
+</ol>
+<h2 id="http2"><a href="#http2" class="headerlink" title="http2"></a>http2</h2><ol>
+<li>http2相比于http1.1，性能大幅度提升</li>
+<li>http2通过一个连接来多路复用</li>
+<li>http2拥有头部压缩</li>
+<li>http2拥有新的二进制格式，使用二进制框架层把所有消息封装成二进制，且仍然保持http语法</li>
+<li>http2允许客户端和服务器端实现他们自己的流控制机制，而不是依赖传输层,两端在传输层交换可用的缓冲区大小，来让他们在多路复用流上设置自己的接收窗口</li>
+<li>http2让服务器可以将响应主动“推送”到客户端缓存中</li>
+</ol>
+<h3 id="htpp2头部压缩"><a href="#htpp2头部压缩" class="headerlink" title="htpp2头部压缩"></a>htpp2头部压缩</h3><p>http2头部压缩又称为HAPCK，设计简单而灵活，是因为HPACK格式有意地简单且不灵活能降低由于实现错误而导致的互操作性或安全问题的风险<br>http1.1没有头部压缩，随着请求增加，冗余头部字段会不必要地占用带宽，从而显着增加延迟，而头部压缩可消除冗余报头字段，限制已知安全攻击的漏洞，并且在受限环境中使用有限的内存要求</p>
+<p>http2多路复用</p>
+<p>http 性能优化的关键并不在于高带宽，而是低延迟</p>
+<p>tcp 连接会随着时间进行自我「调谐」，起初会限制连接的最大速度，如果数据成功传输，会随着时间的推移提高传输的速度,这种调谐则被称为 tcp 慢启动,由于这种原因，让原本就具有突发性和短时性的 http 连接变的十分低效</p>
+<p>http/2 通过让所有数据流共用同一个连接，可以更有效地使用 tcp 连接，让高带宽也能真正的服务于 http 的性能提升。而http1.1存在低性能的线头阻塞，一旦有一个请求超时，便会出现阻塞等待的情况</p>
+<h2 id="http3"><a href="#http3" class="headerlink" title="http3"></a>http3</h2><p>之前说了http2，那么http3就是为了解决http2相关问题而诞生，它基于一个新的传输层协议QUIC，而http3就是建立一个在QUIC上运行的HTTP新规范，而http3之前的版本都是基于TCP，QUIC就是为了替代TCP，解决TCP的一些缺陷<br>tcp</p>
+<p>不支持流级复用，TCP会将所有对象序列化在同一个流中，因此，它不知道TCP段的对象级分区，无法在同一个流中复用数据包<br>会产生冗余通信，tco三次连接握手会有冗余的消息交换序列<br>可能会间歇性地挂起数据传输，tcp中有个因为序列顺序处理丢失的问题的缺陷称为行头阻塞</p>
+<h2 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h2><p>同样拥有头部压缩，并优化了对乱序发送的支持，也优化了压缩率<br>放弃tcp，通过udp建立，提高了连接建立的速度，降低了延迟<br>tcp本身是无法解决队头拥塞，quic则解决了这个问题<br>Connection ID使得http3支持连接迁移以及NAT的重绑定</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7001510315514937375">一文总结http1.0，http1.1，http2，http3，面试强心剂</a></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/">前端学习</a><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/44/44_连接图片.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/post/%E6%89%A7%E8%A1%8C%E4%B8%80%E6%9D%A1select%E8%AF%AD%E5%8F%A5%EF%BC%8C%E6%9C%9F%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88.html" title="执行一条select语句，期间发生了什么"><img class="cover" src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/45/45_链接图片.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">执行一条select语句，期间发生了什么</div></div></a></div><div class="next-post pull-right"><a href="/post/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAVite.html" title="深入浅出Vite"><img class="cover" src="/img/loading.gif" data-original="https://raw.githubusercontent.com/GoodMan-jiaan/picGo/main/img/43/42_连接图片.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">深入浅出Vite</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/css%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="css学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/css.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-07</div><div class="title">css学习笔记</div></div></a></div><div><a href="/post/Vue%E5%AD%A6%E4%B9%A0%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86.html" title="Vue学习补充知识"><img class="cover" src="/img/loading.gif" data-original="https://img1.sycdn.imooc.com/5fe209840001573a12000642.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-06</div><div class="title">Vue学习补充知识</div></div></a></div><div><a href="/post/axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="axios学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/axios.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">axios学习笔记</div></div></a></div><div><a href="/post/javaScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="javaScript学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/javascript.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-25</div><div class="title">javaScript学习笔记</div></div></a></div><div><a href="/post/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.html" title="微信小程序学习笔记"><img class="cover" src="/img/loading.gif" data-original="https://kisugitakumi.com/img/weixinxiaochengxu.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-14</div><div class="title">微信小程序学习笔记</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0"><span class="toc-number">1.</span> <span class="toc-text">http1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-1"><span class="toc-number">2.</span> <span class="toc-text">http1.1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86%EF%BC%88%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">缓存处理（强缓存和协商缓存）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="toc-number">2.2.</span> <span class="toc-text">协商缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http2"><span class="toc-number">3.</span> <span class="toc-text">http2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#htpp2%E5%A4%B4%E9%83%A8%E5%8E%8B%E7%BC%A9"><span class="toc-number">3.1.</span> <span class="toc-text">htpp2头部压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http3"><span class="toc-number">4.</span> <span class="toc-text">http3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QUIC"><span class="toc-number">5.</span> <span class="toc-text">QUIC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">6.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By Blank</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">欢迎来到我的个人博客</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div>
+        <style>
+            [bg-lazy] {
+                background-image: none !important;
+                background-color: #eee !important;
+            }
+        </style>
+        <script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(e){e.imageLazyLoadSetting.processImages=t;var n=e.imageLazyLoadSetting.isSPA,i=e.imageLazyLoadSetting.preloadRatio||1,r=o();function o(){var t=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")),e=Array.prototype.slice.call(document.querySelectorAll("[bg-lazy]"));return t.concat(e)}function t(){n&&(r=o());for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(e.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];e=function(){r=r.filter(function(t){return o!==t})},(t=o).hasAttribute("bg-lazy")?(t.removeAttribute("bg-lazy"),e&&e()):(n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,t.removeAttribute("data-original"),e&&e()},t.src!==i&&(n.src=i))}()}function a(){clearTimeout(t.tId),t.tId=setTimeout(t,500)}t(),document.addEventListener("scroll",a),e.addEventListener("resize",a),e.addEventListener("orientationchange",a)}(this);</script></body></html>
